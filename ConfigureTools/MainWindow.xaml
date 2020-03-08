@@ -5,8 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConfigureTools"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+        Title="MainWindow" Height="450" Width="800" MinWidth="800" MinHeight="450">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="串口号：" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label Content="波特率：" Grid.Row="1" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+            <ComboBox x:Name="uartname" Grid.Column="1" Margin="10" SelectedIndex="0" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="buteRaate"  Grid.Row="1" Grid.Column="1" Margin="10" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ToggleButton x:Name="uartportcontrl" Grid.Row="1"  Margin="10" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="uartportcontrl_Click">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Content" Value="关闭串口"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Content" Value="打开串口"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+
+            </ToggleButton>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="设置ID:" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Grid.Column="1" Margin="10" VerticalContentAlignment="Center"/>
+            <Button x:Name="senddata" Margin="10" Content="发送ID" Grid.Column="2" Click="senddata_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <ListBox x:Name="msgbox" ItemsSource="{Binding msglist}" Margin="5"/>
+        </Grid>
     </Grid>
 </Window>
